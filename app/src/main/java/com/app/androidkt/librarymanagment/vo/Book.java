@@ -7,12 +7,13 @@ import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 import static android.arch.persistence.room.ForeignKey.SET_DEFAULT;
+import static android.arch.persistence.room.ForeignKey.SET_NULL;
 
 /**
  * Created by brijesh on 27/5/17.
  */
 
-@Entity(foreignKeys = @ForeignKey(onDelete = SET_DEFAULT,entity = User.class, parentColumns = "user_id", childColumns = "user_id"))
+@Entity(foreignKeys = @ForeignKey(onDelete = CASCADE,entity = User.class, parentColumns = "user_id", childColumns = "user_id"))
 public class Book {
 
 
@@ -22,7 +23,8 @@ public class Book {
 
     private String title;
 
-    @ColumnInfo(name = "user_id")
+
+    @ColumnInfo(name = "user_id" )
     private long userId;
 
     public int getBookId() {
@@ -48,4 +50,6 @@ public class Book {
     public void setUserId(long userId) {
         this.userId = userId;
     }
+
+
 }
