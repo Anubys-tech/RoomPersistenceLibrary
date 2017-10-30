@@ -15,7 +15,6 @@ import com.app.androidkt.librarymanagment.vo.User;
  */
 
 @Database(entities = {User.class, Book.class}, version = 1)
-@TypeConverters({DateConverter.class})
 abstract public class AppDatabase extends RoomDatabase {
 
     public static String DATABASE_NAME = "LibraryDb";

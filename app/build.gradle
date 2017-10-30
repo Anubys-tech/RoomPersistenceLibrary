@@ -3,6 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 'android-O'
     buildToolsVersion '26.0.0 rc2'
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     defaultConfig {
         applicationId "com.app.androidkt.librarymanagment"
         minSdkVersion 16

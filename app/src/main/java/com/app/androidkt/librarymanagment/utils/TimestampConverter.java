@@ -11,8 +11,8 @@ import java.util.Date;
  * Created by brijesh on 27/5/17.
  */
 
-public class DateConverter {
-    static DateFormat df = new SimpleDateFormat(Constants.DOB_FORMAT);
+public class TimestampConverter {
+    static DateFormat df = new SimpleDateFormat(Constants.TIME_STAMP_FORMAT);
 
     @TypeConverter
     public static Date fromTimestamp(String value) {
@@ -34,3 +34,5 @@ public class DateConverter {
         return value == null ? null : df.format(value);
     }
 }
+
+

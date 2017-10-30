@@ -1,9 +1,12 @@
 package com.app.androidkt.librarymanagment.db;
 
+import com.app.androidkt.librarymanagment.utils.Constants;
 import com.app.androidkt.librarymanagment.vo.Address;
 import com.app.androidkt.librarymanagment.vo.Book;
 import com.app.androidkt.librarymanagment.vo.User;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,10 +19,10 @@ import java.util.Random;
 public class DatabaseCreator {
 
 
+    public static final String[] dob = new String[]{"1999-04-03", "1991-02-03", "2013-03-30"};
+
     private String[] firstName = new String[]{"Noah", "Emma", "Liam", "Olivia", "William", "Ava", "Mason", "Sophia", "James",
             "Isabella", "Benjamin", "Mia", "Jacob", "Charlotte", "Michael", "Abigail", "Elijah", "Emily", "Ethan", "Harper"};
-
-
     private String[] street = new String[]{
             "High Street", "Station Road", "Main Street", "Park Road", "Church Road", "Church Street", "London Road", "Victoria Road", "Green Lane",
             "The Avenue", "The Crescent", "Queens Road", "New Road", "Grange Road", "Kings Road", "Kingsway", "Windsor Road", "Highfield Road", "Mill Lane",
@@ -54,7 +57,8 @@ public class DatabaseCreator {
     };
 
 
-    public List<User> getRandomUserList() {
+    public List<User> getRandomUserList() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DOB_FORMAT);
         List<User> users = new ArrayList<>();
         User tempUser;
         Address address;
@@ -62,6 +66,7 @@ public class DatabaseCreator {
         int stateRange = state.length;
         int nameRange = firstName.length;
         int streetRange = street.length;
+        int dobRange = dob.length;
         Random random = new Random();
         for (int i = 1; i <= 20; i++) {
             address = new Address();
@@ -74,6 +79,7 @@ public class DatabaseCreator {
             tempUser.address = address;
             tempUser.firstName = firstName[random.nextInt(nameRange)];
             tempUser.createDate = new Date();
+            tempUser.dob = sdf.parse(dob[random.nextInt(dobRange)]);
             users.add(tempUser);
         }
         return users;

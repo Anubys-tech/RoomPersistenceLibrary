@@ -10,6 +10,7 @@ import com.app.androidkt.librarymanagment.db.AppDatabase;
 import com.app.androidkt.librarymanagment.db.DatabaseCreator;
 import com.app.androidkt.librarymanagment.vo.User;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -31,7 +32,11 @@ public class UserRepository {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                appDatabase.userDao().insertAll(databaseCreator.getRandomUserList());
+                try {
+                    appDatabase.userDao().insertAll(databaseCreator.getRandomUserList());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 return null;
             }
 
